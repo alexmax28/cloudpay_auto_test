@@ -486,13 +486,22 @@ class TestAppium(unittest.TestCase):
     # =================================================================================================== user 充值 test
     def test_M_user_select_trader_take_order(self):
         # 切一下tab 刷新常駐
-        # buy_switch = self.d.find_elements(By.XPATH,"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView")
-        # buy_switch.click()
-        # time.sleep(1)
-        # sell_switch = self.d.find_elements(By.XPATH,"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.TextView")
-        # sell_switch.click()
-
         time.sleep(1)
+        buy_switch = WebDriverWait(self.d, 5).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView"))
+        )
+        buy_switch.click()
+        print("出款")
+        time.sleep(1)
+        sell_switch = WebDriverWait(self.d, 5).until(
+            EC.presence_of_element_located(
+                (By.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.TextView"))
+        )
+        sell_switch.click()
+        print("入款")
+        time.sleep(1)
+
         # 找出充直常駐
         recharg_lists = self.d.find_elements(By.CLASS_NAME,"android.widget.LinearLayout")
         time.sleep(1)
