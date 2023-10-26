@@ -21,7 +21,8 @@ class TestAppium(unittest.TestCase):
     desc['platformVersion'] = '11'  # 手机版本，在手机中：设置--关于手机
     desc['platformName'] = 'Android'  # 手机类型，ios或android
     desc['appPackage'] = 'com.tg.cloudwallet'  # 包名
-    desc['appActivity'] = 'com.tg.cloudwallet.ui.activity.WelcomeActivity'  # 启动入口
+    desc['appActivity'] = 'com.tg.cloudwallet.ui.activity.WelcomeActivity'  # 启动入口\
+    desc['newCommandTimeout'] = '600'
 
     d = webdriver.Remote('http://127.0.0.1:4722/wd/hub', desc) #appium server
 
@@ -47,6 +48,7 @@ class TestAppium(unittest.TestCase):
     tesc['platformName'] = 'Android'  # 手机类型，ios或android
     tesc['appPackage'] = 'com.tg.cloudwalletvip'  # 包名
     tesc['appActivity'] = 'com.tg.cloudwalletvip.ui.activity.WelcomeActivity'  # 启动入口
+    tesc['newCommandTimeout'] = '600'
 
     t = webdriver.Remote('http://127.0.0.1:4723/wd/hub', tesc) #appium server
 
@@ -74,7 +76,7 @@ class TestAppium(unittest.TestCase):
     # 輸入錯誤手機
     def test_A_input_error_phonenumber(self):
         # 輸入錯誤手機
-        input_phone = WebDriverWait(self.d, 10).until(
+        input_phone = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_username"))
         )
@@ -82,7 +84,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入密碼
-        input_password = WebDriverWait(self.d, 10).until(
+        input_password = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_code"))
         )
@@ -90,7 +92,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.d, 10).until(
+        click_login_btn = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_tv_login"))
         )
@@ -100,11 +102,12 @@ class TestAppium(unittest.TestCase):
         Toast = self.d.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"用户不存在或密码错误！")
+        time.sleep(1)
 
     # 輸入錯誤密碼
     def test_B_input_error_password(self):
         # 輸入錯誤手機
-        input_phone = WebDriverWait(self.d, 10).until(
+        input_phone = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_username"))
         )
@@ -112,7 +115,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入密碼
-        input_password = WebDriverWait(self.d, 10).until(
+        input_password = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_code"))
         )
@@ -120,7 +123,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.d, 10).until(
+        click_login_btn = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_tv_login"))
         )
@@ -130,12 +133,13 @@ class TestAppium(unittest.TestCase):
         Toast = self.d.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"用户名或密码无效！")
+        time.sleep(1)
 
 
     # 未輸入密碼
     def test_C_input_none_password(self):
         # 輸入錯誤手機
-        input_phone = WebDriverWait(self.d, 10).until(
+        input_phone = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_username"))
         )
@@ -143,7 +147,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入密碼
-        input_password = WebDriverWait(self.d, 10).until(
+        input_password = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_code"))
         )
@@ -151,7 +155,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.d, 10).until(
+        click_login_btn = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_tv_login"))
         )
@@ -161,11 +165,12 @@ class TestAppium(unittest.TestCase):
         Toast = self.d.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"请输入密码")
+        time.sleep(1)
 
     # 未輸入電話
     def test_D_input_none_phone(self):
         # 輸入錯誤手機
-        input_phone = WebDriverWait(self.d, 10).until(
+        input_phone = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_username"))
         )
@@ -173,7 +178,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入密碼
-        input_password = WebDriverWait(self.d, 10).until(
+        input_password = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_code"))
         )
@@ -181,7 +186,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.d, 10).until(
+        click_login_btn = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_tv_login"))
         )
@@ -191,12 +196,13 @@ class TestAppium(unittest.TestCase):
         Toast = self.d.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"请输入11位手机号")
+        time.sleep(1)
 
 
     # 輸入正確登入
     def test_E_input_true_login(self):
         # 輸入正確手機
-        input_phone = WebDriverWait(self.d, 10).until(
+        input_phone = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_username"))
         )
@@ -204,7 +210,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入正確密碼
-        input_password = WebDriverWait(self.d, 10).until(
+        input_password = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_et_code"))
         )
@@ -212,7 +218,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.d, 10).until(
+        click_login_btn = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/login_tv_login"))
         )
@@ -227,6 +233,7 @@ class TestAppium(unittest.TestCase):
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_username"))
         )
         t_input_error_phone.send_keys("18199999998")
+        time.sleep(1)
 
         t_input_password = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
@@ -240,20 +247,20 @@ class TestAppium(unittest.TestCase):
                 (By.ID, "com.tg.cloudwalletvip:id/login_tv_login"))
         )
         click_login_btn.click()
-        time.sleep(1)
+        # time.sleep(1)
 
 
         Toast = self.t.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
 
         self.assertEqual(Toast.text,"用户不存在或密码错误！")
-        time.sleep(1)
+        # time.sleep(1)
 
 
     # 常駐輸入錯誤密碼
     def test_G_input_tarder_error_password(self):
         # 輸入錯誤手機
-        t_input_phone = WebDriverWait(self.t, 10).until(
+        t_input_phone = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_username"))
         )
@@ -261,7 +268,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入密碼
-        t_input_password = WebDriverWait(self.t, 10).until(
+        t_input_password = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_code"))
         )
@@ -269,7 +276,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.t, 10).until(
+        click_login_btn = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_tv_login"))
         )
@@ -279,11 +286,12 @@ class TestAppium(unittest.TestCase):
         Toast = self.t.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"用户名或密码无效！")
+        time.sleep(1)
 
     # 常駐未輸入密碼
     def test_H_input_trader_none_password(self):
         # 輸入錯誤手機
-        input_phone = WebDriverWait(self.t, 10).until(
+        input_phone = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_username"))
         )
@@ -291,7 +299,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入密碼
-        input_password = WebDriverWait(self.t, 10).until(
+        input_password = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_code"))
         )
@@ -299,7 +307,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.t, 10).until(
+        click_login_btn = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_tv_login"))
         )
@@ -309,11 +317,12 @@ class TestAppium(unittest.TestCase):
         Toast = self.t.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"请输入密码")
+        time.sleep(1)
 
     # 常駐未輸入電話
     def test_I_input_trader_none_phone(self):
         # 輸入錯誤手機
-        input_phone = WebDriverWait(self.t, 10).until(
+        input_phone = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_username"))
         )
@@ -321,7 +330,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入密碼
-        input_password = WebDriverWait(self.t, 10).until(
+        input_password = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_code"))
         )
@@ -329,7 +338,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.t, 10).until(
+        click_login_btn = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_tv_login"))
         )
@@ -339,11 +348,12 @@ class TestAppium(unittest.TestCase):
         Toast = self.t.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"请输入11位手机号")
+        time.sleep(1)
 
-    # 輸入正確登入 & 錯誤google驗證
-    def test_J_input_trader_true_login_and_error_google_code(self):
+    # 輸入正確登入
+    def test_J_input_trader_true_login(self):
         # 輸入正確手機
-        input_phone = WebDriverWait(self.t, 10).until(
+        input_phone = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_username"))
         )
@@ -351,7 +361,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 輸入正確密碼
-        input_password = WebDriverWait(self.t, 10).until(
+        input_password = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_et_code"))
         )
@@ -359,7 +369,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
          # 登入
-        click_login_btn = WebDriverWait(self.t, 10).until(
+        click_login_btn = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/login_tv_login"))
         )
@@ -367,55 +377,59 @@ class TestAppium(unittest.TestCase):
         print("手機輸入正確")
         time.sleep(1)
 
-         # 錯誤google驗證碼
+    # 輸入錯誤google驗證
+    def test_K_input_false_google_code(self):
+        # 錯誤google驗證碼
         totp = pyotp.TOTP('v6wtd3fdxzedrdgy6hb5ab2a')
-        true_goolge_password = totp.now()
-        print(f"google驗證碼: {true_goolge_password}")
-
-        t_input_google_code = WebDriverWait(self.t, 5).until(
+        true_goolge_false_password = totp.now()
+        print(f"google驗證碼: {true_goolge_false_password}")
+        time.sleep(1)
+        t_input_google_false_code = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/dialog_etCode"))
         )
-        t_input_google_code.send_keys(f"{true_goolge_password}")
+        t_input_google_false_code.send_keys(f"{true_goolge_false_password}")
         time.sleep(1)
 
         # google驗證碼click
-        t_click_google_code_submit = WebDriverWait(self.t, 5).until(
+        t_click_false_google_code_submit = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/dialog_tvSure"))
         )
-        t_click_google_code_submit.click()
+        t_click_false_google_code_submit.click()
         time.sleep(1)
+
         Toast = self.t.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
         print(Toast.text)
         self.assertEqual(Toast.text,"谷歌身份验证错误！")  
         time.sleep(1)
        
     # 輸入正確google驗證
-    def test_K_input_true_google_code(self):
+    def test_L_input_true_google_code(self):
         # google驗證碼
         totp = pyotp.TOTP('v5wtd3fdxzedrdgy6hb5ab2b')
-        true_goolge_password = totp.now()
-        print(f"google驗證碼: {true_goolge_password}")
+        true_goolge_true_password = totp.now()
+        print(f"google驗證碼: {true_goolge_true_password}")
+        # time.sleep(1)
 
-        t_input_google_code = WebDriverWait(self.t, 5).until(
+        t_input_google_true_code = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/dialog_etCode"))
         )
-        t_input_google_code.send_keys(f"{true_goolge_password}")
+        t_input_google_true_code.send_keys(f"{true_goolge_true_password}")
         time.sleep(1)
 
         # google驗證碼click
-        t_click_google_code_submit = WebDriverWait(self.t, 5).until(
+        t_click_true_google_code_submit = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwalletvip:id/dialog_tvSure"))
         )
-        t_click_google_code_submit.click()
+        t_click_true_google_code_submit.click()
         time.sleep(1)
         print("google驗證輸入正確")
 
     # 打開入款出款開關
-    def test_L_trader_open_sell_buy_switch(self):
+    def test_M_trader_open_sell_buy_switch(self):
         # 入款 switch
         t_click_sell_switch = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
@@ -425,19 +439,20 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 檢查開關
-        t_alert_text = WebDriverWait(self.t, 5).until(
+        t_alert_sell_text = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.XPATH, "/hierarchy/android.widget.Toast"))
         )
-        print(t_alert_text.text)
+        # print(t_alert_sell_text.text)
         # time.sleep(1)
 
-        if t_alert_text.text != "开启成功":
+        if t_alert_sell_text.text != "开启成功":
             t_click_sell_switch.click()
             time.sleep(1)
             Toast = self.t.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
             print(Toast.text)
-            self.assertEqual(Toast.text,"开启成功")  
+            self.assertEqual(Toast.text,"开启成功")
+        time.sleep(1)
 
 
         # 出款 tab
@@ -454,24 +469,23 @@ class TestAppium(unittest.TestCase):
                 (By.ID, "com.tg.cloudwalletvip:id/home_iv_closeOrOpen"))
         )
         t_click_buy_switch.click()
-        time.sleep(1)
-
+        # time.sleep(1)
         # 檢查開關
-        t_alert_text = WebDriverWait(self.t, 5).until(
+        t_alert_buy_text = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
                 (By.XPATH, "/hierarchy/android.widget.Toast"))
         )
-        print(t_alert_text.text)
-        # time.sleep(1)
-
-        if t_alert_text.text != "开启成功":
+        # print(t_alert_buy_text.text)
+        if t_alert_buy_text.text != "开启成功":
             t_click_buy_switch.click()
-            time.sleep(1)
+            # time.sleep(1)
+            print("aaaaaaa")
             Toast = self.t.find_element(By.XPATH,"/hierarchy/android.widget.Toast")
             print(Toast.text)
-            self.assertEqual(Toast.text,"开启成功")  
-            
+            self.assertEqual(Toast.text,"开启成功")
+        time.sleep(1)  
 
+    def test_N_switch_to_sell_tab(self):
         # 入款 tab
         t_click_sell_btn = WebDriverWait(self.t, 5).until(
             EC.presence_of_element_located(
@@ -484,22 +498,23 @@ class TestAppium(unittest.TestCase):
 
 
     # =================================================================================================== user 充值 test
-    def test_M_user_select_trader_take_order(self):
+    def test_O_user_select_trader_take_order(self):
         # 切一下tab 刷新常駐
         time.sleep(1)
         buy_switch = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView"))
         )
+        self.assertEqual(buy_switch.text,"提现")
         buy_switch.click()
-        print("出款")
+        print("提现")
         time.sleep(1)
         sell_switch = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.TextView"))
         )
         sell_switch.click()
-        print("入款")
+        print("充值")
         time.sleep(1)
 
         # 找出充直常駐
@@ -526,10 +541,10 @@ class TestAppium(unittest.TestCase):
 
         self.assertEqual(trader_name,"alex常駐") # 判斷所選常駐名稱是否一致
                 
-        time.sleep(1)
+        # time.sleep(1)
 
         # 輸入充值金額
-        input_recharg_amount = WebDriverWait(self.d, 10).until(
+        input_recharg_amount = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/pop_etAmount"))
         )
@@ -537,7 +552,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 確認下單
-        recharg_order_true = WebDriverWait(self.d, 10).until(
+        recharg_order_true = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/pop_tvSure"))
         )
@@ -545,7 +560,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 我已付款
-        recharg_payment_sure = WebDriverWait(self.d, 10).until(
+        recharg_payment_sure = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/payment_tv_sure"))
         )
@@ -553,7 +568,7 @@ class TestAppium(unittest.TestCase):
         time.sleep(1)
 
         # 重要提示_我已付款
-        alert_recharg_payment_sure = WebDriverWait(self.d, 10).until(
+        alert_recharg_payment_sure = WebDriverWait(self.d, 5).until(
             EC.presence_of_element_located(
                 (By.ID, "com.tg.cloudwallet:id/dialog_tvStop"))
         )
@@ -563,29 +578,24 @@ class TestAppium(unittest.TestCase):
 
 # # =================================================================================================== trader 確認到帳
 # trader 入款清單找出用戶
-    def test_N_trader_select_user_check_order(self):
+    def test_P_trader_select_user_check_order(self):
         recharg_user_lists = self.t.find_elements(By.CLASS_NAME,"android.widget.LinearLayout")
-        time.sleep(1)
-
         recharg_user_names = self.t.find_elements(By.ID,"com.tg.cloudwalletvip:id/item_tvName")
-        time.sleep(1)
-
-
         for n,recharg_user_item in enumerate(recharg_user_lists):
             
             if recharg_user_names[n].text == "18166666":
                 print(recharg_user_names[n].text)
-
                 print(n+1)
+                # time.sleep(1)
                 click_recharg_user_name_btn = WebDriverWait(self.t, 5).until(
                     EC.presence_of_element_located(
                         (By.XPATH, f"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[{n+1}]"))
                 )
                 click_recharg_user_name_btn.click()
                 break        
-        time.sleep(1)
+        # time.sleep(1)
 
-        # 確認到賬
+        # 確認到帳
         check_recharg_arrival_btn = WebDriverWait(self.t, 5).until(
                 EC.presence_of_element_located(
                     (By.ID, "com.tg.cloudwalletvip:id/confirm_tv_sure"))
@@ -612,12 +622,18 @@ class TestAppium(unittest.TestCase):
                 EC.presence_of_element_located(
                     (By.ID, "com.tg.cloudwalletvip:id/complete_tv_orderNum"))
             )
+        time.sleep(1)
         print(f"常駐:{trader_order_complete.text}")
         print(f"訂單編號:{trader_order_no.text}")
 
-        time.sleep(10)
+        time.sleep(3)
 
-
+# # =================================================================================================== 關閉app
+    def test_Q_close_app(self):
+        # self.d.close_app()
+        # self.t.close_app()
+        self.d.quit()
+        self.t.quit()
 
 # # =================================================================================================== user 確認充值完成
 
@@ -631,7 +647,7 @@ class TestAppium(unittest.TestCase):
     # def test_find_battery(self):
     #     el = self.d.find_element(By.XPATH,"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.TextView")
     #     el.click()
-    # d.close_app()
+
 
 
 if __name__ == '__main__':
