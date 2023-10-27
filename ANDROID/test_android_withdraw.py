@@ -662,7 +662,7 @@ class TestAppium(unittest.TestCase):
             if recharg_user_names[n].text == "18166666":
                 print(recharg_user_names[n].text)
                 print(n+1)
-                # time.sleep(1)
+                time.sleep(1)
                 click_recharg_user_name_btn = WebDriverWait(self.t, 5).until(
                     EC.presence_of_element_located(
                         (By.XPATH, f"/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.viewpager.widget.ViewPager/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[{n+1}]"))
@@ -725,12 +725,12 @@ class TestAppium(unittest.TestCase):
 
         time.sleep(3)
 
-# # # =================================================================================================== 關閉app
-#     def test_Q_close_app(self):
-#         # self.d.close_app()
-#         # self.t.close_app()
-#         self.d.quit()
-#         self.t.quit()
+# # =================================================================================================== 關閉app
+    def test_X_close_app(self):
+        # self.d.close_app()
+        # self.t.close_app()
+        self.d.quit()
+        self.t.quit()
 
 # # # =================================================================================================== user 確認充值完成
 
