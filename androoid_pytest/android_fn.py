@@ -6,6 +6,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 import pyotp
+import yaml
+
+def get_data():
+    f = open("data.yaml",encoding="utf8")
+    data = yaml.safe_load(f)
+    print(data)
+    return data
 
 def user_login(d,vesion):
     

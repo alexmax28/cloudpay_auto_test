@@ -16,9 +16,19 @@ import unittest
 
 
 class TestAppium(unittest.TestCase):
+    # 安卓模擬器
+    # desc = {}
+    # desc['deviceName'] = 'emulator-5554'  # 手机设备名称，adb devices，模擬器
+    # desc['platformVersion'] = '11'  # 手机版本，在手机中：设置--关于手机
+    # desc['platformName'] = 'Android'  # 手机类型，ios或android
+    # desc['appPackage'] = 'com.tg.cloudwallet'  # 包名
+    # desc['appActivity'] = 'com.tg.cloudwallet.ui.activity.WelcomeActivity'  # 启动入口\
+    # desc['newCommandTimeout'] = '600'
+
+    # 夜神
     desc = {}
-    desc['deviceName'] = 'emulator-5554'  # 手机设备名称，adb devices，模擬器
-    desc['platformVersion'] = '11'  # 手机版本，在手机中：设置--关于手机
+    desc['deviceName'] = '127.0.0.1:62001'  # 手机设备名称，adb devices，模擬器
+    desc['platformVersion'] = '7'  # 手机版本，在手机中：设置--关于手机
     desc['platformName'] = 'Android'  # 手机类型，ios或android
     desc['appPackage'] = 'com.tg.cloudwallet'  # 包名
     desc['appActivity'] = 'com.tg.cloudwallet.ui.activity.WelcomeActivity'  # 启动入口\
@@ -38,8 +48,8 @@ class TestAppium(unittest.TestCase):
     x2 = int(x*0.1)
     y2 = int(y*0.5)
     d.swipe(x1, y1, x2, y2)
-
-    fn.user_login(d)
+    vesion = int(desc['platformVersion'])
+    fn.user_login(d,vesion)
 
 # ============================================= trader
     tesc = {}

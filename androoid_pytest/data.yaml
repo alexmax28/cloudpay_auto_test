@@ -1,0 +1,37 @@
+user_login_params_false:
+  # 輸入錯誤手機
+  - [18161548414,123456] 
+  # 輸入錯誤密碼
+  - [18177777776,123458]
+  # 未輸入密碼
+  - [18177777776,'']
+  # 未輸入電話
+  - ['',123456]
+
+user_login_params_true:
+  # 正確登入
+  - [18166666666,12345678]
+
+trader_login_params_false:
+# 輸入錯誤手機
+  - [18199999998,111111]
+  # 輸入錯誤密碼
+  - [18199999998,123458]
+  # 未輸入密碼
+  - [18199999998,'']
+  # 未輸入電話
+  - ['',111111]
+
+trader_login_params_true:
+# 輸入錯誤手機
+  - [18199999999,111111]
+
+trader_google_code_error:
+  - [Null]
+  - ['v6wtd3fdxzedrdgy6hb5ab2a']
+
+trader_google_code_true:
+ - ['v5wtd3fdxzedrdgy6hb5ab2b']
+
+# drive_info:
+#   - ['127.0.0.1:62001','7','Android','com.tg.cloudwallet','com.tg.cloudwallet.ui.activity.WelcomeActivity','600']
